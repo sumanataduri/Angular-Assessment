@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="myapp">
+
+<head>
+    <title>Cheapshark Deals</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js" type="text/JavaScript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+    <script type="text/javascript" src="cheapshark.js"></script>
+    <link rel="stylesheet" href="cheapshark.css">
+</head>
+
+<body>
+    <h1>CheapShark Deals</h1><br>
+    <div ng-controller="DealsController">
+        <table ng-repeat="i in group(number) track by $index" class="group">
+            <thead class="header">
+                <tr>
+                    <th colspan='2' class="groupnumber">{{(group(number).length-$index)*10}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="latestdeal in latestdeals|score:$index:group(number).length |orderBy :'title':false" class="highlight">
+                    <td>{{latestdeal.title }}</td>
+                    <td>{{latestdeal.metacriticScore}}</td>
+                </tr>
+            </tbody>
+        </table>&emsp;&emsp;
+    </div>
+</body>
+</html>
